@@ -98,7 +98,7 @@ const Executives = () => {
         <section 
           key={index}
           data-index={index}
-          className={`exec-section pt-16 min-h-screen flex flex-col md:flex-row items-center ${exec.bgColor} py-8 px-4 md:px-10 lg:px-20 transition-opacity duration-700
+          className={`exec-section pt-[16vh] min-h-screen flex flex-col md:flex-row items-center ${exec.bgColor} py-8 px-4 md:px-10 lg:px-20 transition-opacity duration-700
             ${isVisible[index] ? 'opacity-100' : 'opacity-0'}`}
         >
           {index % 2 === 0 ? (
