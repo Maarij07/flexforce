@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import img1 from '../assets/president.jpg';
-import img2 from '../assets/vicePresident.jpg';
+import img2 from '../assets/vicePresident.webp';
 import img3 from '../assets/generalSecretary.jpg';
 
 const Executives = () => {
@@ -55,7 +55,7 @@ const Executives = () => {
     },
     {
       title: "Vice President",
-      name: "Iqra Mazhar",
+      name: "Iqra Mazar",
       image: img2,
       description: "We introduce Iqra Mazhar, the dedicated Vice President of the Air University Civic Engagement Society (AUCES). Iqra is a passionate advocate for youth empowerment, tirelessly working to promote our society across various platforms. Her steadfast commitment to social change and civic awareness has made a significant impact on our community and beyond. Through her efforts, Iqra inspires young individuals to engage actively in civic issues, cultivating a sense of responsibility and leadership among the youth. She believes in the power of informed citizens to drive positive change, and her initiatives reflect this belief. As Vice President, Iqra continues to elevate AUCES's mission, ensuring that our society serves as a catalyst for social transformation. We all will witness how her passion and leadership will shape the future of AUCES and empower the next generation of leaders!",
       bgColor: "bg-white",

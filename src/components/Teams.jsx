@@ -1,21 +1,23 @@
 import React from 'react';
 import CircularGallery from './CircularGallery';
+import img1 from '../assets/bushra.jpg'
+import img2 from '../assets/maarij.jpg'
+import img3 from '../assets/laiba.jpg'
+import img4 from '../assets/mashal.jpg'
+import img5 from '../assets/muskan.jpg'
+import img6 from '../assets/omema.jpg'
+import img7 from '../assets/talha.jpg'
 
 const Teams = () => {
   // Team members data with Asian names
   const teamMembers = [
-    { image: 'https://picsum.photos/seed/team1/800/600', text: 'Jin Park' },
-    { image: 'https://picsum.photos/seed/team2/800/600', text: 'Ming Zhang' },
-    { image: 'https://picsum.photos/seed/team3/800/600', text: 'Arjun Patel' },
-    { image: 'https://picsum.photos/seed/team4/800/600', text: 'Sakura Tanaka' },
-    { image: 'https://picsum.photos/seed/team5/800/600', text: 'Raj Kumar' },
-    { image: 'https://picsum.photos/seed/team6/800/600', text: 'Mei Lin Chen' },
-    { image: 'https://picsum.photos/seed/team7/800/600', text: 'Akira Watanabe' },
-    { image: 'https://picsum.photos/seed/team8/800/600', text: 'Siti Rahman' },
-    { image: 'https://picsum.photos/seed/team9/800/600', text: 'Haruki Nakamura' },
-    { image: 'https://picsum.photos/seed/team10/800/600', text: 'Priya Sharma' },
-    { image: 'https://picsum.photos/seed/team11/800/600', text: 'Yuna Kim' },
-    { image: 'https://picsum.photos/seed/team12/800/600', text: 'Ravi Singh' }
+    { image: img1, text: '.' },
+    { image: img2, text: '.' },
+    { image: img3, text: '.' },
+    { image: img4, text: '.' },
+    { image: img5, text: '.' },
+    { image: img6, text: '.' },
+    { image: img7, text: '.' }
   ];
 
   return (

@@ -23,7 +23,7 @@ const Home = () => {
       {/* Hero Section */}
       <header className={`py-16 px-6 text-center transition-all duration-700 delay-100 transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold text-blue-900 mb-6">Civic Engagement Society</h1>
+          <h1 className="text-4xl md:text-6xl font-bold text-blue-900 mb-6">Civic Engagement Pakistan</h1>
           <p className="text-xl text-blue-800 max-w-2xl mx-auto mb-8">
             Empowering students to make a difference in their communities through active participation and civic responsibility.
           </p>
@@ -73,7 +73,7 @@ const Home = () => {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-6">Join Our Mission</h2>
           <p className="text-lg mb-8">
-            The Civic Engagement Society is dedicated to promoting civic responsibility and community service among students. Through various initiatives and programs, we aim to foster a spirit of engagement and leadership.
+            The civic engagement Pakistan is dedicated to promoting civic responsibility and community service among students. Through various initiatives and programs, we aim to foster a spirit of engagement and leadership.
           </p>
           <form className="max-w-md mx-auto">
             <input 
@@ -95,13 +95,13 @@ const Home = () => {
       <footer className={`bg-blue-800 text-white py-8 px-6 transition-all duration-700 delay-700 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">Civic Engagement Society</h3>
+            <h3 className="text-xl font-bold mb-4">civic engagement Pakistan</h3>
             <p className="text-blue-100">
-              Making a difference through active civic participation since 2020.
+              Making a difference through active civic participation since 2024.
             </p>
           </div>
           <div className="text-right">
-            <p className="text-blue-100">&copy; 2024 Civic Engagement Society. All rights reserved.</p>
+            <p className="text-blue-100">&copy; 2024 civic engagement Pakistan. All rights reserved.</p>
             <div className="flex justify-end space-x-4 mt-4">
               <a href="#" className="text-white hover:text-blue-200 transition-colors duration-300">Twitter</a>
               <a href="#" className="text-white hover:text-blue-200 transition-colors duration-300">Instagram</a>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '../assets/logo.jpg';
+import logo from '../assets/logo.png';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -59,7 +59,7 @@ const Navbar = () => {
               <img 
                 src={logo} 
                 alt="Logo" 
-                className="h-[8vh] w-auto relative z-10 transition-transform duration-300 group-hover:scale-105" 
+                className="h-[25vh] w-auto relative z-10 transition-transform duration-300 group-hover:scale-105" 
               />
               <div className="absolute inset-0 bg-blue-500/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </Link>
