@@ -1,31 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '../assets/logo.png';
+import { motion } from 'framer-motion';
+import { Smartphone, Menu, X, Phone } from 'lucide-react';
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
-  // Set active link based on current path
-  const getActiveLink = () => {
-    const path = location.pathname;
-    if (path === '/') return 'Home';
-    if (path === '/executives') return 'Executives';
-    if (path === '/teams') return 'Team';
-    if (path === '/events') return 'Events';
-    if (path === '/collaborations') return 'Collaborations';
-    if (path === '/contact-us') return 'Contact Us';
-    return '';
-  };
-
-  const activeLink = getActiveLink();
-
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      const offset = window.scrollY;
-      if (offset > 50) {
+      if (window.scrollY > 20) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -36,158 +21,82 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when route changes
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [location]);
-
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
+  const navLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' },
+    { name: 'About', path: '/about' },
+    { name: 'Contact', path: '/contact' },
+  ];
 
   return (
-    <>
-      <nav 
-        className={`w-full h-[10vh] fixed top-0 z-50 transition-all duration-500 ${
-          scrolled ? 'bg-black/80' : 'bg-black/60'
-        }`}
-      >
-        <div className="max-w-[95vw] mx-auto px-4 h-full flex items-center justify-between">
-          {/* Logo with subtle glow effect */}
-          <div className="flex-shrink-0 relative group">
-            <Link to="/">
-              <img 
-                src={logo} 
-                alt="Logo" 
-                className="h-[25vh] w-auto relative z-10 transition-transform duration-300 group-hover:scale-105" 
-              />
-              <div className="absolute inset-0 bg-blue-500/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            </Link>
-          </div>
-          
-          {/* Nav Links with improved readability */}
-          <div className="hidden md:flex items-center space-x-12 px-6 py-2 rounded-full border border-blue-400/30">
-            <NavLink to="/" label="Home" active={activeLink === 'Home'} />
-            <NavLink to="/executives" label="Executives" active={activeLink === 'Executives'} />
-            <NavLink to="/teams" label="Team" active={activeLink === 'Team'} />
-            <NavLink to="/events" label="Events" active={activeLink === 'Events'} />
-            <NavLink to="/collaborations" label="Collaborations" active={activeLink === 'Collaborations'} />
-            <NavLink 
-              to="/contact-us"
-              label="Contact Us" 
-              active={activeLink === 'Contact Us'} 
-              isHighlighted={true}
-            />
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
+      <div className="container-custom">
+        <div className="flex justify-between items-center">
+          <Link to="/" className="flex items-center space-x-2">
+            <Smartphone className="text-primary" size={28} />
+            <span className="text-xl font-bold">FixMyPhone</span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            <div className="flex space-x-6">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className={`font-medium hover:text-primary transition-colors ${
+                    location.pathname === link.path ? 'text-primary' : 'text-dark'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+            <a href="tel:+1234567890" className="flex items-center space-x-2 btn btn-primary">
+              <Phone size={18} />
+              <span>Call Now</span>
+            </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button 
-              className="group relative w-10 h-10 flex items-center justify-center"
-              onClick={toggleMobileMenu}
-              aria-label="Toggle mobile menu"
-            >
-              <div className="w-6 flex flex-col items-center justify-center gap-1.5 group-hover:gap-2 transition-all duration-300">
-                <span className={`block h-0.5 w-full bg-blue-400 rounded-full group-hover:bg-blue-300 transition-all duration-300 ${
-                  mobileMenuOpen ? 'rotate-45 translate-y-2' : ''
-                }`}></span>
-                <span className={`block h-0.5 w-full bg-blue-400 rounded-full group-hover:bg-blue-300 transition-all duration-300 ${
-                  mobileMenuOpen ? '-rotate-45' : ''
-                }`}></span>
-              </div>
-              <span className="absolute w-full h-full rounded-full border border-blue-400/30 group-hover:border-blue-400/50 group-hover:scale-90 transition-all duration-300"></span>
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      {/* Mobile Drawer */}
-      <div 
-        className={`fixed top-0 right-0 w-64 h-full bg-black/90 z-50 transform transition-transform duration-300 ease-in-out ${
-          mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        } md:hidden`}
-      >
-        <div className="h-[10vh] flex items-center justify-end px-4">
-          <button 
-            onClick={toggleMobileMenu}
-            className="text-blue-400 hover:text-blue-300 transition-colors duration-300"
-            aria-label="Close mobile menu"
+          {/* Mobile Navigation Toggle */}
+          <button
+            className="md:hidden text-dark"
+            onClick={() => setIsOpen(!isOpen)}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
-        </div>
-        <div className="flex flex-col space-y-4 px-6 py-8">
-          <MobileNavLink to="/" label="Home" active={activeLink === 'Home'} />
-          <MobileNavLink to="/executives" label="Executives" active={activeLink === 'Executives'} />
-          <MobileNavLink to="/teams" label="Team" active={activeLink === 'Team'} />
-          <MobileNavLink to="/events" label="Events" active={activeLink === 'Events'} />
-          <MobileNavLink to="/collaborations" label="Collaborations" active={activeLink === 'Collaborations'} />
-          <MobileNavLink 
-            to="/contact-us"
-            label="Contact Us" 
-            active={activeLink === 'Contact Us'} 
-            isHighlighted={true}
-          />
         </div>
       </div>
 
-      {/* Overlay for mobile menu */}
-      {mobileMenuOpen && (
-        <div 
-          className="fixed inset-0 bg-black/50 z-40 md:hidden"
-          onClick={toggleMobileMenu}
-        ></div>
+      {/* Mobile Navigation Menu */}
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          className="md:hidden bg-white shadow-lg absolute w-full"
+        >
+          <div className="container-custom py-4 flex flex-col space-y-4">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                className={`font-medium py-2 hover:text-primary transition-colors ${
+                  location.pathname === link.path ? 'text-primary' : 'text-dark'
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                {link.name}
+              </Link>
+            ))}
+            <a href="tel:+1234567890" className="flex items-center space-x-2 btn btn-primary justify-center">
+              <Phone size={18} />
+              <span>Call Now</span>
+            </a>
+          </div>
+        </motion.div>
       )}
-    </>
-  );
-};
-
-const NavLink = ({ to, label, active, isHighlighted }) => {
-  return (
-    <div className="relative group">
-      <Link
-        to={to}
-        className={`text-[1.8vh] font-medium tracking-wide transition duration-300 ${
-          active ? 'text-blue-300' : 'text-white'
-        } ${isHighlighted ? 'text-blue-200' : ''}`}
-        aria-label={`Navigate to ${label}`}
-      >
-        {label}
-        {isHighlighted && (
-          <span className="ml-1 inline-block w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"></span>
-        )}
-      </Link>
-      
-      {/* Animated underline */}
-      <span 
-        className={`absolute left-0 bottom-[-4px] h-[2px] bg-blue-400 transition-all duration-300 ${
-          active ? 'w-full' : 'w-0 group-hover:w-full'
-        }`} 
-      />
-      
-      {/* Subtle glow effect */}
-      {active && (
-        <span className="absolute left-0 bottom-[-4px] h-[2px] w-full bg-blue-400 blur-sm"></span>
-      )}
-    </div>
-  );
-};
-
-const MobileNavLink = ({ to, label, active, isHighlighted }) => {
-  return (
-    <Link
-      to={to}
-      className={`block py-2 border-b border-blue-400/20 ${
-        active ? 'text-blue-300' : 'text-white'
-      } ${isHighlighted ? 'text-blue-200' : ''} text-lg font-medium transition duration-300`}
-    >
-      {label}
-      {isHighlighted && (
-        <span className="ml-1 inline-block w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"></span>
-      )}
-    </Link>
+    </nav>
   );
 };
 
