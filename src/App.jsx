@@ -1,48 +1,42 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { motion } from 'framer-motion';
 
 // Pages
 import Home from './pages/Home';
-import Services from './pages/Services';
 import About from './pages/About';
+import Classes from './pages/Classes';
+import Trainers from './pages/Trainers';
 import Contact from './pages/Contact';
-import NotFound from './pages/NotFound';
 
 // Components
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-// ScrollToTop component to reset scroll position
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-  
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  
-  return null;
-};
-
 const App = () => {
   return (
     <Router>
-      <ScrollToTop />
       <div className="flex flex-col min-h-screen">
+        <ToastContainer position="top-right" autoClose={3000} />
         <Navbar />
-        <main className="flex-grow">
+        <motion.main 
+          className="flex-grow"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/services" element={<Services />} />
             <Route path="/about" element={<About />} />
+            <Route path="/classes" element={<Classes />} />
+            <Route path="/trainers" element={<Trainers />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<NotFound />} />
           </Routes>
-        </main>
+        </motion.main>
         <Footer />
       </div>
-      <ToastContainer position="bottom-right" />
     </Router>
   );
 };

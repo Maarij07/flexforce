@@ -6,10 +6,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#3B82F6",
-        secondary: "#10B981",
-        dark: "#1E293B",
-        light: "#F8FAFC"
+        primary: "#1E8449", // Dark green
+        secondary: "#0D5F33", // Darker green
+        dark: "#121212", // Near black
+        light: "#E0E0E0" // Light gray for text on dark backgrounds
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
